@@ -1,15 +1,14 @@
 #include <random>
 #include <vector>
+#include "MC.h"
 
 std::vector<double> normal_random(int num_samples,
                                   double mean, 
                                   double stddev, 
                                   unsigned seed) {
                                     
-    // Create a random engine with an optional seed
     std::default_random_engine generator(seed);
 
-    // Define the normal distribution
     std::normal_distribution<double> distribution(mean, stddev);
 
     // Generate random numbers

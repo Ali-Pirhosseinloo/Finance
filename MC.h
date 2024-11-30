@@ -2,6 +2,7 @@
 #define MC_H
 #include <vector>
 #include <random>
+#include "Option.h"
 
 std::vector<double> normal_random(int num_samples,
                                   double mean, 
@@ -9,27 +10,14 @@ std::vector<double> normal_random(int num_samples,
                                   unsigned seed = std::random_device{}());
 
 
-class MC {
-    private:
-
-        int n;
-        double S,
-               K,
-               r,
-               v,
-               T;
+class MC : public Option {
 
     public: 
-        MC (const int& n,
-            const double& S,
-            const double& K, 
-            const double& r, 
-            const double& v, 
-            const double& T);
 
-        double MC_call_price ();
+        double MC_call_price (const int& n);
 
-        double MC_put_price ();
+        double MC_put_price (const int& n);
+
 };                                 
 
 #endif
