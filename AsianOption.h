@@ -13,15 +13,15 @@ public:
 
     double Put_PayOff(const double& X) const override;
 
-    void path_price_generator(std::vector<double> spot_prices);
+    std::vector<double> path_price_generator(const std::vector<double>& initial_prices) const;
 
     double Asian_Call_PayOff(const std::vector<double>& spot_prices) const;
 
     double Asian_Put_PayOff(const std::vector<double>& spot_prices) const;
 
-    double Asian_MC_Call_Price();
+    double Asian_MC_Call_Price() const;
 
-    double Asian_MC_Put_Price();
+    double Asian_MC_Put_Price() const;
 
     virtual ~AsianOption() {};
 };

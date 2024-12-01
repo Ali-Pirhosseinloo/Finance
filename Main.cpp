@@ -1,42 +1,43 @@
 #include <iostream>
-#include "Option.h"
 #include "EuropeanOption.h"
 #include "AsianOption.h"
-#include "BSM.h"
-
+#include "AmericanOption.h"
 
 int main() {
-    /*
+    
     double S = 100.0;  // Option price
     double K = 100.0;  // Strike price
     double r = 0.05;   // Risk-free rate
-    double v = 0.2;    // Volatility of the underlying
+    double v = 0.2;    // Volatility
     double T = 1.0;    // One year until expiry
 
-    EuropeanOption Option(S,K,r,v,T);
+    EuropeanOption EU_Option(S, K, r, v, T);
+    AsianOption Asian_Option(S, K, r, v, T);
+    AmericanOption American_Option(S, K, r, v, T);
 
-    double call = Option.MC_Call_Price();
-    double put = Option.MC_Put_Price();
+    std::cout << "European Call Price:      " << EU_Option.BSM_Call_Price() << std::endl;
+    std::cout << "Euroepan Put Price:       " << EU_Option.BSM_Put_Price() << std::endl;
 
-    std::cout << "Call Price:      " << call << std::endl;
-    std::cout << "Put Price:       " << put << std::endl;
-*/
+    std::cout << "European Call Price:      " << EU_Option.MC_Call_Price() << std::endl;
+    std::cout << "Euroepan Put Price:       " << EU_Option.MC_Put_Price() << std::endl;
 
-    double S = 30.0;  // Option price
-  double K = 29.0;  // Strike price
-  double r = 0.08;   // Risk-free rate (8%)
-  double v = 0.3;    // Volatility of the underlying (30%)
-  double T = 1.00;    
+    std::cout << "Asian Call Price:     " << Asian_Option.Asian_MC_Call_Price() << std::endl;
+    std::cout << "Asian Put Price:     " << Asian_Option.Asian_MC_Put_Price() << std::endl;
 
-  AsianOption A_Option(S,K,r,v,T);
+    std::cout << "American Call Price:     " << American_Option.BSM_Call_Price() << std::endl;
 
-  std::cout << "Underlying:      " << S << std::endl;
-  std::cout << "Strike:          " << K << std::endl;
-  std::cout << "Risk-Free Rate:  " << r << std::endl;
-  std::cout << "Volatility:      " << v << std::endl;
-  std::cout << "Maturity:        " << T << std::endl;
 
-  std::cout << "Asian Price:     " << A_Option.Asian_MC_Put_Price() << std::endl;
-
+    std::cout << "Call Delta:      " << EU_Option.Call_Delta() << std::endl;
+    std::cout << "Call Gamma:      " << EU_Option.Call_Gamma() << std::endl;
+    std::cout << "Call Vega:       " << EU_Option.Call_Vega() << std::endl;
+    std::cout << "Call Theta:      " << EU_Option.Call_Theta() << std::endl;
+    std::cout << "Call Rho:        " << EU_Option.Call_Rho() << std::endl;
+    std::cout  << std::endl;
+    std::cout << "Put Delta:       " << EU_Option.Put_Delta() << std::endl;
+    std::cout << "Put Gamma:       " << EU_Option.Put_Gamma() << std::endl;
+    std::cout << "Put Vega:        " << EU_Option.Put_Vega() << std::endl;
+    std::cout << "Put Theta:       " << EU_Option.Put_Theta() << std::endl;
+    std::cout << "Put Rho:         " << EU_Option.Put_Rho() << std::endl;
+ 
     return 0;
 }

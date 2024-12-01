@@ -1,4 +1,3 @@
 Makefile
 .vscode
-
-data/*.csv
+OptionPricing.dSYM

@@ -1,5 +1,4 @@
 #include <cmath>
-#include <random>
 #include <algorithm>
 #include "EuropeanOption.h"
 
