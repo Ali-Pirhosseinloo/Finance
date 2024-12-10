@@ -77,11 +77,11 @@ After compilation, run the program with the following command:
 
 ## Input Parameters  
 The program uses the following predefined market parameters:  
-- **Spot Price (\(S\))**: 100.0  
-- **Strike Price (\(K\))**: 100.0  
-- **Risk-Free Rate (\(r\))**: 0.05  
-- **Volatility (\(v\))**: 0.2  
-- **Time to Maturity (\(T\))**: 1.0  
+- **Spot Price \(S\)**: 100.0  
+- **Strike Price \(K\)**: 100.0  
+- **Risk-Free Rate \(r\)**: 0.05  
+- **Volatility \(v\)**: 0.2  
+- **Time to Maturity \(T\)**: 1.0  
 
 These values are set in `main.cpp`, but you can modify them to test different scenarios and simulate various market conditions.  
 
