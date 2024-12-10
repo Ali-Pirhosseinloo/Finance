@@ -1,21 +1,19 @@
 # Option Pricing and Greeks Calculation in C++  
 
-This project implements financial derivatives pricing and risk analysis in C++. It includes functionality for European, Asian, and American options using industry-standard methods like Black-Scholes-Merton (BSM), Monte Carlo simulations, and binomial trees. Additionally, it calculates the Greeks to measure sensitivity to various parameters.  
+In this project, we implement financial derivatives pricing in C++. It includes functionality for European, Asian, and American options using methods like Black-Scholes-Merton (BSM), Monte Carlo simulations, and binomial trees. Additionally, it calculates the Greeks (Delta, Gamma, Theta, Vega, Rho) to measure sensitivity to various parameters.  
 
 ## Features  
 - **European Options**:  
-  - Pricing using Black-Scholes-Merton and Monte Carlo methods.  
-  - Payoff calculation for call and put options.  
+  - Pricing using Black-Scholes-Merton and Monte Carlo methods.   
   - Greeks calculation using BSM and finite difference approximations.  
 
 - **Asian Options**:  
   - Monte Carlo pricing for Asian options.  
-  - Path price generation to simulate spot price trajectories.  
+  - Path price generation with geometric Brownian motion to simulate spot price trajectories.  
   - Greeks calculation using finite difference methods.  
 
 - **American Options**:  
   - Pricing using binomial tree models.  
-  - Payoff calculation for American-style options.  
   - Greeks calculation via finite difference methods.
     
 
@@ -23,6 +21,16 @@ This project implements financial derivatives pricing and risk analysis in C++. 
 
 ### `NormRand_Gen.cpp`  
 Generates normally distributed random numbers and includes functions to calculate the PDF and CDF of the normal distribution.  
+
+### `Option.cpp`  
+Defines the core option pricing functionality.  
+- Variables include spot price, strike price, risk-free interest rate, volatility, and time to maturity.  
+- Implements pricing for call and put options using:  
+  - Black-Scholes-Merton (BSM).  
+  - Monte Carlo simulation.  
+- Computes Greeks (Delta, Gamma, Theta, Vega, Rho) using:  
+  - Black-Scholes-Merton formulas.  
+  - Finite difference approximations.  
 
 ### `EuropeanOption.cpp`  
 Calculates the payoff for European call and put options and implements pricing using Black-Scholes-Merton and Monte Carlo methods.  
@@ -47,15 +55,24 @@ Defines key market parameters and demonstrates the functionality of the program 
 ## How to Run  
 
 1. **Clone the Repository**:
-
-2.
-    ```
-   git clone https://github.com/Ali-Pirhosseinloo/option-pricing.git
+  ```
+   git clone https://github.com/Ali-Pirhosseinloo/Option-Pricing.git
    cd Option-Pricing
    ```
 
-3. **Compile the Code**:
+2. **Compile the Code**:
 
+Use a C++ compiler like g++:
+```
+g++ -o option_pricing main.cpp Option.cpp NormRand_Gen.cpp EuropeanOption.cpp AsianOption.cpp AmericanOption.cpp -std=c++17
+```
+
+3. **Run the Program**:
+After compilation, run the program with the following command:
+```
+./option_pricing
+
+```
 
 
 ## Input Parameters  
