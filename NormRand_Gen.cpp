@@ -1,10 +1,13 @@
 #include "NormRand_Gen.h"
 #include <random>
 
+
+// Create a random number generator
 std::default_random_engine generator(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 std::normal_distribution<double> distribution(0.0, 1.0);
 
-double Normal_Rand() {
+// Generate a random number from a normal distribution
+double Normal_Rand() { 
         return distribution(generator);
 }
 

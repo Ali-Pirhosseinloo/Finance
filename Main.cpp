@@ -9,11 +9,11 @@ int main() {
     double K = 100.0;  // Strike price
     double r = 0.05;   // Risk-free rate
     double v = 0.2;    // Volatility
-    double T = 1.0;    // One year until expiry
+    double T = 1.0;    // Maturity
 
-    EuropeanOption EU_Option(S, K, r, v, T);
-    AsianOption Asian_Option(S, K, r, v, T);
-    AmericanOption American_Option(S, K, r, v, T);
+    EuropeanOption EU_Option(S, K, r, v, T); // Create an instance of EuropeanOption
+    AsianOption Asian_Option(S, K, r, v, T); // Create an instance of AsianOption
+    AmericanOption American_Option(S, K, r, v, T); // Create an instance of AmericanOption
 
     std::cout << "European Call Price BSM:      " << EU_Option.BSM_Call_Price() << std::endl;
     std::cout << "Euroepan Put Price BSM:       " << EU_Option.BSM_Put_Price() << std::endl;

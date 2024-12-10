@@ -22,7 +22,7 @@ double AmericanOption::BNT_Put_Price(double S1, double K1, double r1, double v1,
     std::vector<std::vector<double>> priceTree(N + 1, std::vector<double>(N + 1, 0.0));
     std::vector<std::vector<double>> optionTree(N + 1, std::vector<double>(N + 1, 0.0));
 
-        // Compute the price tree
+    // Compute the price tree
     for (int i = 0; i <= N; ++i) {
         for (int j = 0; j <= i; ++j) {
             priceTree[i][j] = S1 * pow(u, j) * pow(d, i - j);
@@ -46,12 +46,13 @@ double AmericanOption::BNT_Put_Price(double S1, double K1, double r1, double v1,
     return optionTree[0][0]; // Return the option price at the root
 }
 
-double AmericanOption::BNT_Put_Price(int N){
+double AmericanOption::BNT_Put_Price(int N){ // Binomial Tree American Put Price
         return BNT_Put_Price(S, K, r, v, T, N);
 }
 
+// Finite Difference Method for Greeks
 
-double AmericanOption::American_Put_Delta_FDM(double delta_S) {
+double AmericanOption::American_Put_Delta_FDM(double delta_S) { 
   return (BNT_Put_Price(S + delta_S, K, r, v, T) - BNT_Put_Price(S - delta_S, K, r, v, T)) / (2 * delta_S);
 }
 

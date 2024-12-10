@@ -14,13 +14,16 @@ double AsianOption::Put_PayOff(const double& X) const {
 }
 
 
+  // Generate a vector of spot prices for the Asian option
+
   std::vector<double> AsianOption::path_price_generator(const std::vector<double>& initial_prices, double r1,  double v1,  double T1) const {
 
         std::vector<double> spot_prices = initial_prices;
         double dt = T1 / static_cast<double>(spot_prices.size());
 
         for (size_t i = 1; i < spot_prices.size(); ++i) {
-            spot_prices[i] = spot_prices[i - 1] * exp(dt * (r1 - 0.5 * v1 * v1) + std::sqrt(v1 * v1 * dt) * Normal_Rand());
+            // Geometric Brownian Motion
+            spot_prices[i] = spot_prices[i - 1] * exp(dt * (r1 - 0.5 * v1 * v1) + std::sqrt(v1 * v1 * dt) * Normal_Rand()); 
         }
 
         return spot_prices;
@@ -37,8 +40,8 @@ double AsianOption::Put_PayOff(const double& X) const {
 
 double AsianOption::Asian_Call_PayOff(const std::vector<double>& spot_prices) const {
   unsigned num_times = spot_prices.size();
-  double sum = std::accumulate(spot_prices.begin(), spot_prices.end(), 0);
-  double mean = sum / static_cast<double>(num_times);
+  double sum = std::accumulate(spot_prices.begin(), spot_prices.end(), 0); // Sum of all spot prices
+  double mean = sum / static_cast<double>(num_times); // Arithmetic mean
   return Call_PayOff(mean);
 }
 
@@ -53,6 +56,7 @@ double AsianOption::Asian_Put_PayOff(const std::vector<double>& spot_prices) con
 //------------------------------------------------------------------------
 
 
+// Monte Carlo pricing of Asian options
 
 double AsianOption::Asian_MC_Call_Price(double S1, double K1, double r1,  double v1,  double T1) const {
     unsigned num_sims = 100000;
@@ -60,9 +64,9 @@ double AsianOption::Asian_MC_Call_Price(double S1, double K1, double r1,  double
     std::vector<double> spot_prices(num_intervals, S1);
     double payoff_sum = 0.0;
   for (int i=0; i<num_sims; i++) {
-    payoff_sum += Asian_Call_PayOff(path_price_generator(spot_prices));
+    payoff_sum += Asian_Call_PayOff(path_price_generator(spot_prices)); // Sum of payoffs
   }
-  return ((payoff_sum / static_cast<double>(num_sims)) * exp(-r1*T1));
+  return ((payoff_sum / static_cast<double>(num_sims)) * exp(-r1*T1)); // Discounted payoff
 
 }
 
@@ -89,6 +93,8 @@ double AsianOption::Asian_MC_Put_Price() const {
 
 //------------------------------------------------------------------------
 
+// Finite difference methods for Greeks
+
 double AsianOption::Asian_Call_Delta_FDM(double delta_S) {
   return (Asian_MC_Call_Price(S + delta_S, K, r, v, T) - Asian_MC_Call_Price(S - delta_S, K, r, v, T)) / (2 * delta_S);
 }
@@ -110,6 +116,8 @@ double AsianOption::Asian_Call_Rho_FDM(double delta_r) {
 }
 
 //------------------------------------------------------------------------
+
+// Finite difference methods for Greeks
 
 double AsianOption::Asian_Put_Delta_FDM(double delta_S) {
   return (Asian_MC_Put_Price(S + delta_S, K, r, v, T) - Asian_MC_Put_Price(S - delta_S, K, r, v, T)) / (2 * delta_S);

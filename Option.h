@@ -22,13 +22,13 @@ class Option {
 
         virtual double Put_PayOff(const double& X) const = 0;
 
-        double MC_Call_Price(int num_simulations = 1000000) const;
-
-        double MC_Put_Price(int num_simulations = 1000000) const;
-
         double MC_Call_Price(double S1, double K1, double r1,  double v1,  double T1 , int num_simulations = 1000000) const;
 
         double MC_Put_Price(double S1, double K1, double r1,  double v1,  double T1, int num_simulations = 1000000) const;
+
+        double MC_Call_Price(int num_simulations = 1000000) const;
+
+        double MC_Put_Price(int num_simulations = 1000000) const;
 
         double BSM_Call_Price();
 
